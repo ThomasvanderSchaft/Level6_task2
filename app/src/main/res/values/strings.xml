@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Popular Movies</string>
+    <string name="mostPopular">The most popular movies of:</string>
+    <string name="year">Year</string>
+    <string name="submit">Submit</string>
+    <string name="title">Title</string>
+    <string name="overview">Overview</string>
+    <string name="overviewDesc">lorem Ipsum</string>
+    <string name="release">Release: 31–06–2020</string>
+    <string name="rating">5</string>
+    <string name="key">f4fa69d302071178227165db7335a4e3</string>
 </resources>
