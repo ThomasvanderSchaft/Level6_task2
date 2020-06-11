@@ -7,6 +7,7 @@ import com.example.popularmovies.api.*
 class MoviesRepository(var context: Context) {
     private val moviesApi: MovieApiService = MovieApi.createApi()
 
+    // Get movie information form API with criteria
     fun getMovies(year: String) = moviesApi.getMoviesForYear(
         mapOf(
             "api_key" to context.getString(R.string.key),

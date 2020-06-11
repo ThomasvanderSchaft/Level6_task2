@@ -16,6 +16,7 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
     val error = MutableLiveData<String>()
     val progressBarStatus = MutableLiveData<Boolean>(false)
 
+    // Initialize call to repo for all movies with the year criteria
     fun getMovies(year: String) {
         progressBarStatus.value = true
         moviesRepository.getMovies(year).enqueue(object : Callback<MovieResponse> {

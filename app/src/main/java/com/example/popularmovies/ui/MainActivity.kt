@@ -45,14 +45,13 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-
         rvMovies.adapter = movieAdapter
-
         btnSubmit.setOnClickListener {
             viewModel.getMovies(etYear.text.toString())
         }
     }
 
+    // Initialize ViewModel of MainActivity
     private fun initViewModel() {
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
         viewModel.moviesPage.observe(this, Observer {
@@ -60,27 +59,25 @@ class MainActivity : AppCompatActivity() {
             movies.addAll(it.movies)
             movieAdapter.notifyDataSetChanged()
         })
-
+        // Handle error message
         viewModel.error.observe(this, Observer {
             Toast.makeText(this, it, Toast.LENGTH_LONG).show()
         })
-
+        // Handle progressBar visibility
         viewModel.progressBarStatus.observe(this, Observer {
             if (it) progressBar.visibility = View.VISIBLE
             else progressBar.visibility = View.GONE
         })
     }
 
+    // Create intent from clicked movie
     private fun onMovieClick(movieItem: Movie) {
         val intent = Intent(this, DetailsActivity::class.java)
         intent.putExtra(EXTRA_MOVIE, movieItem)
         startActivityForResult(intent, 100)
     }
 
-    /**
-     * Calculate the number of spans for the recycler view based on the recycler view width.
-     * @return int number of spans.
-     */
+    // Calculate span count of RecyclerView
     private fun calculateSpanCount(): Int {
         val viewWidth = rvMovies.measuredWidth
         val cardViewWidth = resources.getDimension(R.dimen.cardWidth)

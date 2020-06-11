@@ -23,16 +23,17 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
+        // Load intent information into data fields
         movie = intent.extras?.getParcelable(EXTRA_MOVIE)!!
-
         tvTitle.text = movie.title
         Glide.with(this).load(movie.getPosterUrl()).into(ivPoster)
         Glide.with(this).load(movie.getBackdropUrl()).into(ivBackdrop)
         tvRating.text = movie.rating.toString()
-        tvReleaseDate.text = "Release: ${movie.releaseDate}"
+        tvReleaseDate.text = "Release: " + movie.releaseDate
         tvOverview.text = movie.overview
 
-        var isShow = true
+        // Define bar layout
+        var isShown = true
         var scrollRange = -1
         appbar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { barLayout, verticalOffset ->
             if (scrollRange == -1){
@@ -41,10 +42,10 @@ class DetailsActivity : AppCompatActivity() {
             if (scrollRange + verticalOffset == 0){
                 collapsingToolbarLayout.title = movie.title
                 collapsingToolbarLayout.setCollapsedTitleTextColor(Color.parseColor("#FFFFFFFF"))
-                isShow = true
-            } else if (isShow){
+                isShown = true
+            } else if (isShown){
                 collapsingToolbarLayout.title = " " //careful there should a space between double quote otherwise it wont work
-                isShow = false
+                isShown = false
             }
         })
 
